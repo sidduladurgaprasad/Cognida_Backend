@@ -1,0 +1,49 @@
+# rest client extension requried 
+GET http://localhost:4000/get-user
+###
+
+POST http://localhost:4000/post-user
+Content-Type: application/json
+
+{
+   "uid": "1",
+   "name": "John Doe",
+   "email": "john@example.com",
+   "password": "hashed_password",
+   "cartItems": [],
+   "orderHistory": ["order_id_1", "order_id_2"],
+   "preferences": {
+      "spendCategories": ["Category1", "Category2"],
+      "preferredBrands": ["Brand1", "Brand2"]
+   }
+}
+
+
+###
+POST http://localhost:4000/post-products
+Content-Type: application/json
+
+{
+   "_id": "1",
+   "user": "1",
+   "items": [
+      {
+         "product": "1",
+         "quantity": 2,
+         "subtotal": 199.98
+      }
+   ],
+   "total": 199.98,
+   "orderDate": "2023-10-12T08:00:00Z"
+}
+
+###
+GET http://localhost:4000/get-products
+
+###
+DELETE http://localhost:4000/delete-booking/64eb8dcc3864c88a1b0d3467
+
+PUT http://localhost:4000/update-user
+
+
+

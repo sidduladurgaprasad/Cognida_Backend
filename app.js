@@ -6,7 +6,7 @@ const cors = require('cors');
 const express = require("express"); // Changed "exp" to "express" for clarity
 const { ObjectId } = require("mongodb");
 const app = express();
-
+const axios = require("axios")
 app.use(express.json()); // Used "express" instead of "exp" for better readability
 app.use(cors(
     {
@@ -126,6 +126,12 @@ app.post("/convert-cart-to-orders", async (request, response) => {
     response.status(500).send({ message: 'Error converting cart items to orders', error: error.message });
   }
 });
+//to restart the online server every 14 minutes
+setInterval(()=>{
+  axios.get("https://cognida-backend.onrender.com/get-products").then(
+    console.log("restarted")
+  ).catch((err)=> console.log(err))
+},60*14*1000)
 
 app.get("/get-products", async (request, response) => {
   let bookingCollectionObj = app.get("productsCollectionObj");
@@ -135,7 +141,7 @@ app.get("/get-products", async (request, response) => {
   } catch (error) {
     response.status(500).send({ message: "Error retrieving booking data", error: error.message });
   }
-});
+}); 
 
 app.post("/post-products", async (request, response) => {
   let obj = request.body;
